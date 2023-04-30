@@ -28,9 +28,12 @@ class MyClient(discord.Client):
         if command in ['/ask', '/bot', '/tellme']:
             try:
                 bot_response = openai_response(prompt = user_message)
-                await message.channel.send(f'Response - {bot_response}')
-            except:
+                await message.channel.send(f'{bot_response}')
+                print(f'Response - {bot_response}')
+            except Exception as e:
+                print(e)
                 await message.channel.send('Sorry, I am not feeling well today. Please try again later.')
+                
             
 intents = discord.Intents.default()
 intents.message_content = True
